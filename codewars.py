@@ -32,14 +32,3 @@ def find_uniq(arr):
     a = sorted(arr)
     print(a)
     return a[0] if a[0] != a[1] else a[-1]
-
-
-def find_uniq(arr):
-    arr.sort()
-
-    if(arr[0] < arr[len(arr)-1] and arr[0] < arr[len(arr)-2]):
-        n = arr[0]
-    else:
-        n = arr[len(arr)-1]
-
-    return n
