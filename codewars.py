@@ -32,3 +32,48 @@ def find_uniq(arr):
     a = sorted(arr)
     print(a)
     return a[0] if a[0] != a[1] else a[-1]
+
+"""
+Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+
+Examples
+to_camel_case("the-stealth-warrior") # returns "theStealthWarrior"
+
+to_camel_case("The_Stealth_Warrior") # returns "TheStealthWarrior"
+"""
+
+
+def to_camel_case(text):
+    text = text.replace("_", "-")
+    return "".join([text.split("-")[0]] + [i.capitalize() for i in text.split("-")[1:]])
+
+
+# print(to_camel_case("the-stealth_warrior"))
+# print(to_camel_case("A_B-C"))
+
+
+"""
+Write a function called that takes a string of parentheses, and determines if the order of the parentheses is valid. The function should return true if the string is valid, and false if it's invalid.
+
+Examples
+"()"              =>  true
+")(()))"          =>  false
+"("               =>  false
+"(())((()())())"  =>  true
+"""
+
+
+def valid_parentheses(string):
+    count = 0
+    for i in string:
+        if i == "(":
+            count += 1
+        elif i == ")":
+            if count != 0:
+                count -= 1
+            else:
+                return False
+    return count == 0
+
+# print(valid_parentheses("hi(hi)("))
+# print(valid_parentheses("hi(hi)()"))
