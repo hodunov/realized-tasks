@@ -77,3 +77,27 @@ def valid_parentheses(string):
 
 # print(valid_parentheses("hi(hi)("))
 # print(valid_parentheses("hi(hi)()"))
+
+"""
+Pete, the baker
+
+# must return 2
+cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200})
+# must return 0
+cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000})
+"""
+
+def cakes(recipe, available):
+    if all(elem in list(available.keys())  for elem in list(recipe.keys())):
+        return min([available[key] // recipe[key] for key in recipe ])
+    else:
+        return 0
+
+
+# recipe = {"flour": 500, "sugar": 200, "eggs": 1}
+# available = {"flour": 1200, "sugar": 1200, "eggs": 5, "milk": 200}
+# print(cakes(recipe, available))
+
+# recipe = {"apples": 3, "flour": 300, "sugar": 150, "milk": 100, "oil": 100}
+# available = {"sugar": 500, "flour": 2000, "milk": 2000}
+# print(cakes(recipe, available))
