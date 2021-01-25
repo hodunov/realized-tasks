@@ -106,3 +106,32 @@ def cakes(recipe, available):
 # recipe = {"apples": 3, "flour": 300, "sugar": 150, "milk": 100, "oil": 100}
 # available = {"sugar": 500, "flour": 2000, "milk": 2000}
 # print(cakes(recipe, available))
+
+"""
+The old switcheroo 2
+
+This is a follow up from my kata The old switcheroo</br/>
+
+Write
+
+def encode(str)
+that takes in a string str and replaces all the letters with their respective positions in the English alphabet.
+
+encode('abc') == '123'   # a is 1st in English alpabet, b is 2nd and c is 3rd
+encode('codewars') == '315452311819'
+encode('abc-#@5') == '123-#@5'
+"""
+
+def encode(string):
+    alphabet='abcdefghijklmnopqrstuvwxyz'
+    result = ""
+    for element in string.lower():
+        if element in alphabet:
+            result += str(alphabet.index(element)+1)
+        else:
+            result += element
+    return result
+
+# encode('abc') # '123'   # a is 1st in English alpabet, b is 2nd and c is 3rd
+# encode('codewars') # '315452311819'
+# encode('abc-#@5') #  '123-#@5'
