@@ -135,3 +135,24 @@ def encode(string):
 # encode('abc') # '123'   # a is 1st in English alpabet, b is 2nd and c is 3rd
 # encode('codewars') # '315452311819'
 # encode('abc-#@5') #  '123-#@5'
+
+"""
+FIXME: Replace all dots
+The code provided is supposed replace all the dots . in the specified String str with dashes -
+
+But it's not working properly.
+
+Task
+Fix the bug so we can all go home early.
+
+Notes
+String str will never be null.
+
+"""
+
+import re
+def replace_dots(str):
+    return re.sub(r"\.", "-", str)
+
+print(replace_dots("no dots"))
+print(replace_dots("........"))
