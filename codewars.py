@@ -8,11 +8,15 @@ high_and_low("1 2 -3 4 5") # return "5 -3"
 high_and_low("1 9 3 4 -5") # return "9 -5"
 """
 
+import re
+
+
 def high_and_low(numbers):
     numbers = [int(each) for each in numbers.split()]
     return f"{max(numbers)} {min(numbers)}"
 
 # print(high_and_low("4 5 29 54 4 0 -214 544 -64 1 -3 6 -6"))
+
 
 """
 There is an array with some numbers. All numbers are equal except for one. Try to find it!
@@ -22,16 +26,21 @@ find_uniq([ 0, 0, 0.55, 0, 0 ]) == 0.55
 It’s guaranteed that array contains at least 3 numbers.
 """
 
-# Best practice: 
+# Best practice:
+
+
 def find_uniq(arr):
     a, b = set(arr)
     return a if arr.count(a) == 1 else b
 
 # Another var
+
+
 def find_uniq(arr):
     a = sorted(arr)
     print(a)
     return a[0] if a[0] != a[1] else a[-1]
+
 
 """
 Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
@@ -78,6 +87,7 @@ def valid_parentheses(string):
 # print(valid_parentheses("hi(hi)("))
 # print(valid_parentheses("hi(hi)()"))
 
+
 """
 Pete, the baker
 Pete likes to bake some cakes. He has some recipes and ingredients. 
@@ -92,9 +102,10 @@ cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, mil
 cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000})
 """
 
+
 def cakes(recipe, available):
-    if all(elem in list(available.keys())  for elem in list(recipe.keys())):
-        return min([available[key] // recipe[key] for key in recipe ])
+    if all(elem in list(available.keys()) for elem in list(recipe.keys())):
+        return min([available[key] // recipe[key] for key in recipe])
     else:
         return 0
 
@@ -122,8 +133,9 @@ encode('codewars') == '315452311819'
 encode('abc-#@5') == '123-#@5'
 """
 
+
 def encode(string):
-    alphabet='abcdefghijklmnopqrstuvwxyz'
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
     result = ""
     for element in string.lower():
         if element in alphabet:
@@ -135,6 +147,7 @@ def encode(string):
 # encode('abc') # '123'   # a is 1st in English alpabet, b is 2nd and c is 3rd
 # encode('codewars') # '315452311819'
 # encode('abc-#@5') #  '123-#@5'
+
 
 """
 FIXME: Replace all dots
@@ -150,12 +163,13 @@ String str will never be null.
 
 """
 
-import re
+
 def replace_dots(str):
     return re.sub(r"\.", "-", str)
 
 # print(replace_dots("no dots"))
 # print(replace_dots("........"))
+
 
 """
 First non-repeating character
@@ -171,11 +185,48 @@ If a string contains all repeating characters, it should return an empty string 
 -- see sample tests.
 """
 
+
 def first_non_repeating_letter(string):
-    result = [letter for letter in string if string.lower().count(letter.lower()) == 1]
+    result = [letter for letter in string if string.lower().count(
+        letter.lower()) == 1]
     return result[0] if result else ""
 
 # print(first_non_repeating_letter('stress'))
 # print(first_non_repeating_letter('sTreSS'))
 # print(first_non_repeating_letter(''))
 # print(first_non_repeating_letter('abba'))
+
+
+"""
+Human readable duration format
+
+Your task in order to complete this Kata is to write a function which formats a duration, given as a number of seconds, in a human-friendly way.
+
+The function must accept a non-negative integer. If it is zero, it just returns "now". Otherwise, the duration is expressed as a combination of years, days, hours, minutes and seconds.
+
+It is much easier to understand with an example:
+
+format_duration(62)    # returns "1 minute and 2 seconds"
+format_duration(3662)  # returns "1 hour, 1 minute and 2 seconds"
+For the purpose of this Kata, a year is 365 days and a day is 24 hours.
+
+Note that spaces are important.
+"""
+
+
+def format_duration(second):
+    result = []
+    times = [(60, 'second'),
+             (60, 'minute'),
+             (24, 'hour'),
+             (365, 'day'),
+             (second+1, 'year')]
+    for duration, title in times:
+        second, minute = divmod(second, duration)
+        if minute:
+            result.append('%d %s%s' % (minute, title, 's' * (minute > 1)))
+    return ' and '.join(', '.join(result[::-1]).rsplit(', ', 1)) or 'now'
+
+
+print(format_duration(3662))  # 1 hour, 1 minute and 2 seconds
+print(format_duration((86400*365+60)))  # 1 year and 1 minute
