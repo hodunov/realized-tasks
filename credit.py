@@ -16,50 +16,55 @@
 
 from prettytable import PrettyTable  # pip install prettytable
 
-# Проверяем пользовательский ввод
-while True:
-    try:
-        credit_term = int(input("Введите срок кредита в годах - "))
-        if credit_term < 0:
-            print("Срок не может быть отрицательным. Попробуйте ещё раз")
-            continue
-        break
-    except ValueError:
-        print("Введите целое число")
-        continue
 
-while True:
-    try:
-        credit_amount = int(input("Введите сумму кредита - "))
-        if credit_amount < 0:
-            print("Сумма не может быть отрицательной. Попробуйте ещё раз")
-            continue
-        break
-    except ValueError:
-        print("Введите число")
-        continue
+def input_positive_integer(input_message, negative_value_message, value_error_message,
+                           max_value=0, max_value_message="Вы ввели слишком большое число"):
+    """
+    Проверяем пользовательский ввод
+    Args:
+        input_message (str): приглашение к вводу
+        negative_value_message (str): ответ при неверном вводе
+        value_error_message (str): ответ при ошибке
+        max_value (int):максимальное значение, positive integer. Defaults to 0.
+        max_value_message (str, optional): ответ при вводе числа, больше максимального.
+                                            Defaults to "Вы ввели слишком большое число".
 
-while True:
-    try:
-        interest_rate = int(input("Введите процентную ставку - "))
-        if interest_rate < 0:
-            print("Процент не может быть отрицательным. Попробуйте ещё раз")
+    Returns:
+        int: positive integer
+    """
+    while True:
+        try:
+            value = int(input(f"{input_message} - "))
+            if value < 0:
+                print(negative_value_message)
+                continue
+            if max_value and value > max_value:
+                print(max_value_message)
+                continue
+            return value
+        except ValueError:
+            print(value_error_message)
             continue
-        break
-    except ValueError:
-        print("Введите только число")
-        continue
 
-while True:
-    try:
-        down_payment = int(input("Введите сумму первоначального взноса - "))
-        if down_payment < 0:
-            print("Сумма не может быть отрицательной. Попробуйте ещё раз")
-            continue
-        break
-    except ValueError:
-        print("Введите число")
-        continue
+
+credit_term = input_positive_integer("Введите срок кредита в годах",
+                                     "Срок не может быть отрицательным. Попробуйте ещё раз",
+                                     "Введите целое число",
+                                     )
+credit_amount = input_positive_integer("Введите сумму кредита",
+                                       "Сумма не может быть отрицательной. Попробуйте ещё раз",
+                                       "Введите число",
+                                       )
+interest_rate = input_positive_integer("Введите процентную ставку",
+                                       "Процент не может быть отрицательным. Попробуйте ещё раз",
+                                       "Введите только число"
+                                       )
+down_payment = input_positive_integer("Введите сумму первоначального взноса",
+                                      "Сумма не может быть отрицательной. Попробуйте ещё раз",
+                                      "Введите число",
+                                      max_value=credit_amount,
+                                      max_value_message="Первоначальный взнос не может быть больше суммы кредита"
+                                      )
 
 
 # Вычетаем первоначальный взнос из суммы кредита:
