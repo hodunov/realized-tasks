@@ -14,8 +14,9 @@
 общая сумма платежа за данный месяц |
 """
 
-from prettytable import PrettyTable
+from prettytable import PrettyTable  # pip install prettytable
 
+# Проверяем пользовательский ввод
 while True:
     try:
         credit_term = int(input("Введите срок кредита в годах - "))
@@ -122,6 +123,7 @@ interest_payment = [payment * (interest_rate / 100 / 12) for payment in balance_
 # Итоговый платёж
 result_payment = [payment + principal_payment for payment in interest_payment]
 
+# Формируем итоговую таблицу
 credit = PrettyTable()
 credit.add_column('Месяц', months)
 credit.add_column('Остаток по кредиту', [round(num, 2) for num in balance_of_debt])
