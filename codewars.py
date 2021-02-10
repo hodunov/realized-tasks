@@ -228,5 +228,22 @@ def format_duration(second):
     return ' and '.join(', '.join(result[::-1]).rsplit(', ', 1)) or 'now'
 
 
-print(format_duration(3662))  # 1 hour, 1 minute and 2 seconds
-print(format_duration((86400*365+60)))  # 1 year and 1 minute
+# print(format_duration(3662))  # 1 hour, 1 minute and 2 seconds
+# print(format_duration((86400*365+60)))  # 1 year and 1 minute
+
+"""
+Get the mean of an array
+
+It's the academic year's end, fateful moment of your school report. The averages must be calculated. All the students come to you and entreat you to calculate their average for them. Easy ! You just need to write a script.
+
+Return the average of the given array rounded down to its nearest integer.
+
+The array will never be empty.
+"""
+
+
+def get_average(marks):
+    return int(sum(marks) / len(marks))
+    
+
+print(get_average([1, 5, 87, 45, 8, 8])) # 25
