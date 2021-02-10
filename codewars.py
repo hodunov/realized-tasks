@@ -246,4 +246,25 @@ def get_average(marks):
     return int(sum(marks) / len(marks))
     
 
-print(get_average([1, 5, 87, 45, 8, 8])) # 25
+# print(get_average([1, 5, 87, 45, 8, 8])) # 25
+
+"""
+Double Sort
+
+Simple enough this one - you will be given an array. The values in the array will either be numbers or strings, or a mix of both. You will not get an empty array, nor a sparse one.
+
+Your job is to return a single array that has first the numbers sorted in ascending order, followed by the strings sorted in alphabetic order. The values must maintain their original type.
+
+Note that numbers written as strings are strings and must be sorted with the other strings.
+
+"""
+
+
+def db_sort(arr): 
+    return sorted(arr, key=lambda val: (isinstance(val, str), val))
+
+
+
+print(db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"])) # should equal [46,78,574,"3","69","287","423","Apple","Grape","Peach"])))
+
+print(db_sort([5, 6, 6, 7, 10, 15, 110, '2500', '!', 'come', 'on'])) # should equal [5, 6, 6, 7, 10, 15, 110, '!', '2500', 'come', 'on']
