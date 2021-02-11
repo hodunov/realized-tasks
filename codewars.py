@@ -261,10 +261,16 @@ Note that numbers written as strings are strings and must be sorted with the oth
 
 
 def db_sort(arr): 
-    return sorted(arr, key=lambda val: (isinstance(val, str), val))
+   return sorted(arr, key=lambda val: (isinstance(val, str), val))
 
 
+def db_sort2(arr):
+    new_arr = [x for x in arr if type(x)==int]
+    new_arr.sort()
+    arr = [x for x in arr if x not in new_arr]
+    arr.sort()
+    return new_arr + arr
 
-print(db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"])) # should equal [46,78,574,"3","69","287","423","Apple","Grape","Peach"])))
-
-print(db_sort([5, 6, 6, 7, 10, 15, 110, '2500', '!', 'come', 'on'])) # should equal [5, 6, 6, 7, 10, 15, 110, '!', '2500', 'come', 'on']
+print(db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"])) # should be equal [46,78,574,"287", "3","423", "69","Apple","Grape","Peach"]
+assert db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"]) == [46,78,574,"287", "3","423", "69","Apple","Grape","Peach"]
+print(db_sort2([5, 6, 6, 7, 10, 15, 110, '2500', '!', 'come', 'on'])) # should equal [5, 6, 6, 7, 10, 15, 110, '!', '2500', 'come', 'on']
