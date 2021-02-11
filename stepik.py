@@ -12,8 +12,7 @@
 
 def min_minted_coin(coin):
     count = 0
-    wallet = (25,10,5,1)
-    for value in wallet:
+    for value in (25,10,5,1):
         ceil = int(coin/value)
         coin = coin % value
         count += ceil
