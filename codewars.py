@@ -271,6 +271,35 @@ def db_sort2(arr):
     arr.sort()
     return new_arr + arr
 
-print(db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"])) # should be equal [46,78,574,"287", "3","423", "69","Apple","Grape","Peach"]
-assert db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"]) == [46,78,574,"287", "3","423", "69","Apple","Grape","Peach"]
-print(db_sort2([5, 6, 6, 7, 10, 15, 110, '2500', '!', 'come', 'on'])) # should equal [5, 6, 6, 7, 10, 15, 110, '!', '2500', 'come', 'on']
+# print(db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"])) # should be equal [46,78,574,"287", "3","423", "69","Apple","Grape","Peach"]
+# assert db_sort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"]) == [46,78,574,"287", "3","423", "69","Apple","Grape","Peach"]
+# print(db_sort2([5, 6, 6, 7, 10, 15, 110, '2500', '!', 'come', 'on'])) # should equal [5, 6, 6, 7, 10, 15, 110, '!', '2500', 'come', 'on']
+
+"""
+Double Trouble
+
+Given an array of integers (x), and a target (t), you must find out if any two consecutive numbers in the array sum to t. If so, remove the second number.
+
+Example:
+
+x = [1, 2, 3, 4, 5]
+t = 3
+
+1+2 = t, so remove 2. No other pairs = t, so rest of array remains:
+
+[1, 3, 4, 5]
+
+Work through the array from left to right.
+
+Return the resulting array.
+"""
+
+def trouble(lst, target):
+    for i in range(len(lst) - 1):
+        if lst[i] + lst[i + 1] == target:
+            del lst[i + 1]
+            return trouble(lst, target)
+    return lst
+
+print(trouble([1, 3, 5, 6, 7, 4, 3], 7))  # should equal [1, 3, 5, 6, 7, 4]
+print(trouble([2, 2, 2, 2, 2, 2], 4))  # should equal [2]
