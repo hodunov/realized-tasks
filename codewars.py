@@ -301,5 +301,22 @@ def trouble(lst, target):
             return trouble(lst, target)
     return lst
 
-print(trouble([1, 3, 5, 6, 7, 4, 3], 7))  # should equal [1, 3, 5, 6, 7, 4]
-print(trouble([2, 2, 2, 2, 2, 2], 4))  # should equal [2]
+# print(trouble([1, 3, 5, 6, 7, 4, 3], 7))  # should equal [1, 3, 5, 6, 7, 4]
+# print(trouble([2, 2, 2, 2, 2, 2], 4))  # should equal [2]
+
+
+"""
+Triple Trouble
+Create a function that will return a string that combines all of the letters of the three inputed strings in groups. Taking the first letter of all of the inputs and grouping them next to each other. Do this for every letter, see example below!
+
+E.g. Input: "aa", "bb" , "cc" => Output: "abcabc"
+
+Note: You can expect all of the inputs to be the same length.
+
+"""
+
+def triple_trouble(one, two, three):
+    return ''.join(map(str, [one[i]+two[i]+three[i] for i in range(len(one))]))
+
+
+print(triple_trouble("Bm", "aa", "tn")) # should equal "Batman"
