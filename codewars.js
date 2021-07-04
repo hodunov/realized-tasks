@@ -19,3 +19,10 @@ const binaryArrayToNumber = arr => {
     // Given an array of ones and zeroes, convert the equivalent binary value to an integer.
     return parseInt(arr.join(''), 2);
 };
+
+
+// https://www.codewars.com/kata/525f50e3b73515a6db000b83/train/javascript
+
+function createPhoneNumber(numbers) {
+    return `(${numbers.slice(0, 3).join('')}) ${numbers.slice(3,6).join('')}-${numbers.slice(6,10).join('')}`
+}
