@@ -26,3 +26,19 @@ const binaryArrayToNumber = arr => {
 function createPhoneNumber(numbers) {
     return `(${numbers.slice(0, 3).join('')}) ${numbers.slice(3,6).join('')}-${numbers.slice(6,10).join('')}`
 }
+
+// https://www.codewars.com/kata/515de9ae9dcfc28eb6000001/train/javascript
+
+function solution(str) {
+    var result = [];
+    if (str.length < 1) {
+        return result;
+    }
+    for (let i = 0; i < str.length; i = i + 2) {
+        result.push(str.slice(i, i + 2));
+    }
+    if (result[result.length - 1].length < 2) {
+        result[result.length - 1] += "_";
+    }
+    return result;
+}
