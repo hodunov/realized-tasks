@@ -7,10 +7,10 @@ function filter_list(l) {
     var result = []
     for (var item of l) {
         if (typeof (item) === 'number') {
-            result.push(item)
+            result.push(item);
         }
     }
-    return result
+    return result;
 }
 
 // https://www.codewars.com/kata/578553c3a1b8d5c40300037c/train/javascript
